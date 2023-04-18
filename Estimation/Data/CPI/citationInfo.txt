@@ -1,0 +1,14 @@
+first data:
+Date collected: 11/24/2020
+table: CUUR0000SA0				
+URL: https://data.bls.gov/cgi-bin/surveymost
+
+Updated data:
+date: 1/14/2020
+table: CUUR0000SA0
+URL: https://data.bls.gov/pdq/SurveyOutputServlet
+
+Updated all items data:
+date: 5/19/2022
+Table: CUUR0000SA0
+URL: https://data.bls.gov/pdq/SurveyOutputServlet
