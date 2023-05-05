@@ -182,14 +182,14 @@ def plotHeadToHeadWaterfall(model, paramDict, pricePremium=None, title=None, sav
     # colors = sns.color_palette('Paired')
 
     woCreditColor = colors[0]
-    woCreditColor = 'xkcd:blue'
+    woCreditColor = 'xkcd:red'
 
     # colors = sns.color_palette('bright', n_colors=10)
     wCreditColor = colors[9]
     wCreditColor = 'xkcd:violet'
     positiveColor = colors[2]
     negativeColor = colors[3]
-    netColor = negativeColor
+    netColor = 'xkcd:blue'
 
     # woCreditColor = colors[9]
     # wCreditColor = colors[8]
@@ -309,8 +309,8 @@ def plotHeadToHeadWaterfall(model, paramDict, pricePremium=None, title=None, sav
 
     # ax = plt.bar(i, netWTP, color='xkcd:red', zorder=4, label='Net WTP', width=width)
     # ax = plt.scatter(i, netWTP, marker='o', color='xkcd:red', s=50, zorder=4, label='Net WTP')
-    ax = plt.scatter(i, netWTP, marker='o', color=netColor, s=50, zorder=4, edgecolors='xkcd:black')
-    ax = plt.errorbar(i, netWTP, yerr=netWTPSE, ecolor='xkcd:black', capsize=10, zorder=1, label='±2 S.E.', fmt='none')
+    ax = plt.scatter(i, netWTP, marker='o', color=netColor, s=50, zorder=4, edgecolors=netColor)
+    ax = plt.errorbar(i, netWTP, yerr=netWTPSE, ecolor=netColor, capsize=10, zorder=1, label='±2 S.E.', fmt='none')
     ax = plt.text(i, netWTP+netWTPSE+yShift, "Net", ha='center', va='bottom')
     ax = plt.text(i, netWTP - netWTPSE - yShift, netText, ha='center', va='top')
     # ax = plt.errorbar(i, netWTP, yerr=netWTPSE, ecolor='xkcd:black', capsize=20, zorder=1, fmt='none')
@@ -409,12 +409,11 @@ def plotHeadToHeadWaterfall(model, paramDict, pricePremium=None, title=None, sav
     # plt.legend(bbox_to_anchor=(1.01,1), loc='upper left')
     if(relHEV):
         if(noBEV):
-            print('lol---')
-            plt.ylabel('HEV WTP ($10k) Relative to ICEV'.format(powertrainType))
+            plt.ylabel('HEV WTP Relative to ICEV'.format(powertrainType))
         else:
-            plt.ylabel('{} WTP ($10k) Relative to HEV'.format(powertrainType))
+            plt.ylabel('{} WTP Relative to HEV'.format(powertrainType))
     else:
-        plt.ylabel('{} WTP ($10k) Relative to CV'.format(powertrainType))
+        plt.ylabel('{} WTP Relative to CV'.format(powertrainType))
 
 
     if('currentLeaf' in saveFile or 'futureLeaf' in saveFile):
@@ -427,7 +426,7 @@ def plotHeadToHeadWaterfall(model, paramDict, pricePremium=None, title=None, sav
         newYLabs = []
         for ytick in plt.yticks()[0]:
             newYTicks.append(int(ytick))
-            newYLabs.append(int(ytick//10))
+            newYLabs.append('${}k'.format(int(ytick)))
         plt.yticks(newYTicks, newYLabs)
 
     if (title != None):
